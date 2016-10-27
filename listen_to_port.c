@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 	}
 
 	/*
-		some manipulations with addrinfo structs, if we got it
+		some manipulations with addrinfo structs
 	*/
 	
 	freeaddrinfo(result_info);
