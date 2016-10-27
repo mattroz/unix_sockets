@@ -1,9 +1,12 @@
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <netdb.h>
 #include <stdio.h>
 #include <string.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 
 int main(int argc, char *argv[])
@@ -15,7 +18,7 @@ int main(int argc, char *argv[])
 	
 	if(argc != 2)
 	{
-		fprintf(stderr, "Usage: show_ip <hostname>\n");
+		fprintf(stderr, "Usage: showip <hostname>\n");
 		return 1;
 	}
 
@@ -31,7 +34,13 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: %s\n", gai_strerror(status));
 		exit(EXIT_FAILURE);
 	}
+	else
+	{
+		fprintf(stdout, "Connection established, hostname: %s\n", hostname);
+	}
 	
+	
+	freeaddrinfo(result);
 
 	return 1;
 }
