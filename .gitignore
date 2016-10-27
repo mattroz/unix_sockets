@@ -1,33 +1,31 @@
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# Ignore all
+*
 
-# Precompiled Headers
-*.gch
-*.pch
+# Unignore all with extensions
+!*.*
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+# Unignore all dirs
+!*/
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+### Above combination will ignore all files without extension ###
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+# Ignore files with extension `.class` & `.sm`
+*.class
+*.sm
 
-# Debug files
-*.dSYM/
-*.su
+# Ignore `bin` dir
+bin/
+# or
+*/bin/*
+
+# Unignore all `.jar` in `bin` dir
+!*/bin/*.jar
+
+# Ignore all `library.jar` in `bin` dir
+*/bin/library.jar
+
+# Ignore a file with extension
+relative/path/to/dir/filename.extension
+
+# Ignore a file without extension
+relative/path/to/dir/anotherfile
