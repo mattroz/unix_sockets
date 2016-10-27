@@ -38,8 +38,32 @@ int main(int argc, char *argv[])
 	{
 		fprintf(stdout, "Connection established, hostname: %s\n", hostname);
 	}
+
+	/*	list IP addresses for given hostname	*/
+	fprintf(stdout, "IP addresses for %s:\n", hostname);
+	for(iter_addrinfo = result; iter_addrinfo != NULL; iter_addrinfo = iter_addrinfo->ai_next)
+	{
+		void *address;
+		char *ip_version;
+		
+		if(iter_addrinfo->ai_family == AF_INET)	/*	if IPv4	*/
+		{
+			struct sockaddr_in *ipv4 = (struct sockaddr_in *)iter_addrinfo->ai_addr;
+			address = &(ipv4->sin_addr);
+			ip_version = "IPv4";
+		}
+		else	/*	if IPv6	*/
+		{
+			struct sockaddr_in6 *ipv6 = (struct sockaddr_in6 *)iter_addrinfo->ai_addr;
+			address = &(ipv6->sin6_addr);
+			ip_version = "IPv6";
+		}
 	
-	
+		/*	print in human-readable format addresses	*/
+		inet_ntop(iter_addrinfo->ai_family, address, ip_in_str, sizeof ip_in_str);
+		fprintf(stdout, "%s: %s\n", ip_version, ip_in_str);	
+	}
+
 	freeaddrinfo(result);
 
 	return 1;
