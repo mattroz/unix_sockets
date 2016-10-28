@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 	connect_status = connect(socket_fd, result->ai_addr, result->ai_addrlen);	
 	if(connect_status != 0)
 	{
-		perror("connection error: ");
+		perror("connection error");
 		exit(EXIT_FAILURE);
 	}	
 	fprintf(stdout, "connection established succesfully\n");	
