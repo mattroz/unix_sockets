@@ -47,6 +47,7 @@ int main(int argc, char *argv[])
 		perror("connection error: ");
 		exit(EXIT_FAILURE);
 	}	
+	fprintf(stdout, "connection established succesfully\n");	
 
 	freeaddrinfo(result);	
 
