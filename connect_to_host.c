@@ -4,11 +4,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
+
 
 int main(int argc, char *argv[])
 {
 	/*	initialize addrinfo hints and result	*/
-	struct addrinfo hints, &result;
+	struct addrinfo hints, *result;
 	char *hostname, *port;
 	int socket_fd, ai_status, connect_status;
 	
@@ -36,7 +38,12 @@ int main(int argc, char *argv[])
 	
 	/*	get socket file descriptor with given addrinfo	specification	*/
 	socket_fd = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
+	fprintf(stdout, "socketfd: %d\n", socket_fd);
+
+	/*	connect to host with given socket file desciptor and hostname	*/
+	connect_status = connect(socket_fd, result->ai_addr, result->ai_addrlen);	
 	
+
 	freeaddrinfo(result);	
 
 	return 1;
