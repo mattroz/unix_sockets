@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 	/*	get socket file descriptor with given addrinfo	specification	*/
 	socket_fd = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
 	
-	
+	freeaddrinfo(result);	
 
 	return 1;
 }
