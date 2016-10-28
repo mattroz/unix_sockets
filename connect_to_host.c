@@ -42,7 +42,11 @@ int main(int argc, char *argv[])
 
 	/*	connect to host with given socket file desciptor and hostname	*/
 	connect_status = connect(socket_fd, result->ai_addr, result->ai_addrlen);	
-	
+	if(connect_status != 0)
+	{
+		perror("connection error: ");
+		exit(EXIT_FAILURE);
+	}	
 
 	freeaddrinfo(result);	
 
